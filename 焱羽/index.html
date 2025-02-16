@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by KuroiFish</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+< <!DOCTYPE html>
+  <html lang="zh-CN">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星夜之翼 - OC档案馆</title>
+    <style>
+      /* 基础样式 */
+      :root {
+        --main-color: #2A2356;
+        /* 主色调 */
+        --accent-color: #FF6B6B;
+        /* 强调色 */
+        --text-light: #F4F4F4;
+        /* 浅色文字 */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Microsoft Yahei', 'Segoe UI', sans-serif;
+        background: linear-gradient(45deg, #1a1a2e, #16213e);
+        color: var(--text-light);
+        line-height: 1.8;
+      }
+
+      /* 导航栏 */
+      .oc-nav {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 1.5rem;
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .oc-nav h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        text-shadow: 0 0 10px var(--accent-color);
+      }
+
+      /* 角色卡片容器 */
+      .oc-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* 单个角色卡片 */
+      .oc-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1.5rem;
+        transition: transform 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .oc-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      /* 角色头像 */
+      .oc-avatar {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        border: 2px solid var(--accent-color);
+      }
+
+      /* 设定详细信息区块 */
+      .oc-details {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 2rem auto;
+        max-width: 800px;
+      }
+
+      /* 属性标签样式 */
+      .tag {
+        display: inline-block;
+        background: var(--accent-color);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        margin: 0.3rem;
+        font-size: 0.9em;
+      }
+
+      /* 画廊布局 */
+      .gallery {
+        columns: 3 250px;
+        gap: 1rem;
+        padding: 2rem;
+      }
+
+      .gallery img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        transition: transform 0.3s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.03);
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .oc-container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="oc-nav">
+      <h1>✨焱羽档案馆</h1>
+    </nav>
+
+    <div class="oc-container">
+      <!-- 角色卡片模板 -->
+      <div class="oc-card">
+        <img src="oc1-avatar.jpg" alt="焱 角色形象" class="oc-avatar">
+        <h2>初始状态</h2>
+        <p><span class="tag">种族：红龙</span><span class="tag">职业：符咒师</span></p>
+        <p>「下笔的轨迹即是命运的纹路」</p>
+        <button onclick="showDetails('nightwing')">查看完整设定</button>
+      </div>
+
+      <div class="oc-card">
+        <img src="oc2-avatar.png" alt="澜羽 角色形象" class="oc-avatar">
+        <h2>初始状态</h2>
+        <p><span class="tag">种族：蓝龙</span><span class="tag">职业：雇佣兵</span></p>
+        <p>「我的利爪即是真理」</p>
+        <button onclick="showDetails('flameblade')">查看完整设定</button>
+      </div>
+    </div>
+
+    <!-- 详细设定区域 -->
+    <div class="oc-details" id="nightwing-details" style="display:none;">
+      <h2>🌌 焱 完整档案</h2>
+      <h3>核心设定</h3>
+      <ul>
+        <li>年龄：未知</li>
+        <li>身高：178cm</li>
+        <li>特殊能力：火焰、符咒</li>
+      </ul>
+      <h3>背景故事</h3>
+      <p>出生在星月交辉之夜的红龙，天生龙角柔软无攻击性，被视为残疾龙...</p>
+    </div>
+
+    <!-- 角色画廊 -->
+    <div class="gallery">
+         <img src="oc-art1.png" alt="焱">
+        <img src="oc-art2.png" alt="澜羽">
+        <img src="oc-scene1.jpg" alt="关系图">
+    </div>
+
+    <script>
+      // 显示详细设定的函数
+      function showDetails(character) {
+        // 隐藏所有详情区块
+        document.querySelectorAll('.oc-details').forEach(el => el.style.display = 'none');
+        // 显示对应角色的详情
+        document.getElementById(`${character}-details`).style.display = 'block';
+        // 滚动到详情位置
+        window.scrollTo({
+          top: document.getElementById(`${character}-details`).offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    </script>
+  </body>
+
+  </html>
+<!-- partial -->
+  
+</body>
+</html>
